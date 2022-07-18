@@ -31,8 +31,9 @@ Global variables
 body {
   font-family: "Poppins", sans-serif;
 }
-img {
+img:not(.nav-logo) {
   width: 100%;
+  display: block;
 }
 h1 {
   font-size: 3rem;
@@ -99,5 +100,53 @@ p {
   }
   p {
     font-size: 1.15rem;
+  }
+}
+/*
+=========================================
+Navigation
+=========================================
+*/
+.navigation {
+  outline: 2px solid red;
+  display: grid;
+  align-items: center;
+  height: 5rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+.navigation-center {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+.nav-logo {
+  height: 2.7rem;
+}
+.nav-bars {
+  justify-self: right;
+  font-size: 1.5rem;
+}
+.nav-panel {
+  display: none;
+}
+@media screen and (min-width: 850px) {
+  .nav-logo {
+    height: 3rem;
+  }
+  .nav-bars {
+    display: none;
+  }
+  .nav-panel {
+    justify-self: right;
+    min-width: 600px;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 }
