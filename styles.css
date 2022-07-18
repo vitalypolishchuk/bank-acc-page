@@ -211,7 +211,7 @@ Header
 */
 .header {
   margin-top: 5rem;
-  height: 100vh;
+  height: 800px;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.09);
   position: relative;
