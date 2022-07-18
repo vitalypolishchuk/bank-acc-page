@@ -204,31 +204,61 @@ Navigation
     display: flex;
   }
 }
-
 /*
 =========================================
 Header
 =========================================
 */
 .header {
+  margin-top: 5rem;
+  height: 100vh;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  position: relative;
+}
+.header-center {
+  width: 95%;
+  max-width: 1200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.header-left {
+  width: 100%;
+}
+.header-left h1 {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 2rem;
+  opacity: 0.7;
+  letter-spacing: var(--spacing);
+}
+.header-left-center h6 {
+  text-align: center;
+  opacity: 0.7;
+  font-weight: 400;
+  margin-bottom: 6rem;
+}
+.header-right {
   display: none;
 }
+.button-center {
+  text-align: center;
+}
+.header-button {
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.2rem;
+}
 @media screen and (min-width: 768px) {
-  .header {
-    margin-top: 5rem;
-    display: block;
-    height: 100vh;
-    width: 100%;
-    outline: 2px solid red;
-    position: relative;
-  }
   .header-center {
-    width: 95%;
-    max-width: 1200px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: grid;
     grid-template-rows: 250px 300px;
   }
@@ -236,25 +266,18 @@ Header
     width: 60%;
     position: relative;
   }
-  .header-left h1 {
-    opacity: 0.7;
-    letter-spacing: var(--spacing);
-  }
-  .header-left-center {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  .header-left h1,
+  .header-left h6 {
+    text-align: left;
   }
   .header-left-center h6 {
-    opacity: 0.7;
-    font-weight: 400;
     display: none;
-    margin-bottom: 2rem;
   }
   .header-button {
     display: none;
   }
   .header-right {
+    display: block;
     justify-self: end;
   }
   .header-img {
@@ -269,15 +292,21 @@ Header
   .header-left {
     height: 400px;
     width: 100%;
+    display: grid;
+    align-items: center;
   }
   .header-left-center h1 {
     margin-bottom: 3rem;
   }
   .header-left-center h6 {
+    margin-bottom: 2rem;
     display: block;
   }
   .header-right {
     height: 400px;
+  }
+  .button-center {
+    text-align: left;
   }
   .header-button {
     display: inline-block;
