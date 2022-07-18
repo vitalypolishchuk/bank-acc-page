@@ -14,7 +14,7 @@ Variables
   --color-primary: #39b385;
   --color-secondary: #ffcb03;
   --color-tertiary: #ff585f;
-  --color-primary-darker: #41a16c;
+  --color-primary-darker: #418c63;
   --color-secondary-darker: #ffbb00;
   --color-tertiary-darker: #fd424b;
   --color-primary-opacity: #5ec5763a;
@@ -114,6 +114,11 @@ p {
     font-size: 1.15rem;
   }
 }
+.word-background {
+  background: var(--gradient-primary);
+  clip-path: polygon(11% 0, 100% 0%, 91% 100%, 0% 100%);
+  padding: 0 2rem;
+}
 /*
 =========================================
 Navigation
@@ -177,6 +182,18 @@ Navigation
   .navBtn {
     display: none;
   }
+  .open-acc {
+    background: var(--color-primary);
+    border-radius: 1.5rem;
+    transition: var(--transition);
+  }
+  .nav-link:hover {
+    background: none;
+    padding-left: 2rem;
+  }
+  .open-acc:hover {
+    background: var(--color-primary-darker);
+  }
   .nav-center {
     display: flex;
     align-items: center;
@@ -185,5 +202,92 @@ Navigation
   .nav-links {
     height: auto;
     display: flex;
+  }
+}
+
+/*
+=========================================
+Header
+=========================================
+*/
+.header {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    margin-top: 5rem;
+    display: block;
+    height: 100vh;
+    width: 100%;
+    outline: 2px solid red;
+    position: relative;
+  }
+  .header-center {
+    width: 95%;
+    max-width: 1200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-rows: 250px 300px;
+  }
+  .header-left {
+    width: 60%;
+    position: relative;
+  }
+  .header-left h1 {
+    opacity: 0.7;
+    letter-spacing: var(--spacing);
+  }
+  .header-left-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .header-left-center h6 {
+    opacity: 0.7;
+    font-weight: 400;
+    display: none;
+    margin-bottom: 2rem;
+  }
+  .header-button {
+    display: none;
+  }
+  .header-right {
+    justify-self: end;
+  }
+  .header-img {
+    height: 100%;
+  }
+}
+@media screen and (min-width: 1150px) {
+  .header-center {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+  }
+  .header-left {
+    height: 400px;
+    width: 100%;
+  }
+  .header-left-center h1 {
+    margin-bottom: 3rem;
+  }
+  .header-left-center h6 {
+    display: block;
+  }
+  .header-right {
+    height: 400px;
+  }
+  .header-button {
+    display: inline-block;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.2rem;
   }
 }
