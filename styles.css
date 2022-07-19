@@ -352,7 +352,8 @@ Features
 .features-center {
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto 10rem auto;
+  margin: 0 auto 0 auto;
+  padding-bottom: 5rem;
 }
 .features-center h6 {
   font-size: 1.5rem;
@@ -398,23 +399,27 @@ Operations
 .operations {
   /* height: 100vh; */
   width: 100%;
+  padding-bottom: 10rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
 }
 .operations-container {
   width: 90%;
   height: 400px;
   max-width: 1000px;
   background: white;
-  margin: 0 auto 10rem auto;
+  margin: 0 auto 0 auto;
   position: relative;
 }
 .operations-btns-container {
   width: 90%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   position: absolute;
   left: 50%;
   top: -5%;
   transform: translateX(-50%);
+  align-items: center;
 }
 .operation-btn {
   background: none;
@@ -425,15 +430,26 @@ Operations
   padding: 0.5rem 1rem;
   font-weight: bold;
   letter-spacing: var(--spacing);
+  transition: var(--transition);
 }
 .transfer {
   background: var(--color-secondary);
+  align-self: flex-start;
+}
+.transfer:hover {
+  background: var(--color-secondary-darker);
 }
 .loan {
   background: var(--color-primary);
 }
+.loan:hover {
+  background: var(--color-primary-darker);
+}
 .close {
   background: var(--color-tertiary);
+}
+.close:hover {
+  background: var(--color-tertiary-darker);
 }
 .operations-inside-container {
   width: 80%;
@@ -446,6 +462,9 @@ Operations
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+}
+.transfer-money-container {
+  display: inline-block;
 }
 .operations-icon {
   font-size: 1.5rem;
@@ -460,6 +479,9 @@ Operations
 .loan-icon {
   background: rgba(57, 179, 133, 0.3);
   color: green;
+}
+.close-icon {
+  background: rgba(255, 88, 95, 0.3);
 }
 .operations-icon-text {
   display: grid;
@@ -477,7 +499,7 @@ Operations
   grid-column: 2/3;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 880px) {
   .operation-btn {
     font-size: 1rem;
     padding: 0.8rem 2.8rem;
@@ -490,6 +512,6 @@ Operations
     height: 300px;
   }
 }
-.loan-container {
+/* .loan-container {
   display: inline-block;
-}
+} */
