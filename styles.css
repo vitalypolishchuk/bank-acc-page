@@ -370,7 +370,7 @@ Features
 .feature {
   margin-bottom: 5rem;
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   .feature {
     display: grid;
     grid-template-columns: 1fr 1fr;
