@@ -436,7 +436,6 @@ Operations
   background: var(--color-tertiary);
 }
 .operations-inside-container {
-  outline: 2px solid red;
   width: 80%;
   position: absolute;
   opacity: 0.7;
