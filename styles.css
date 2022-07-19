@@ -401,7 +401,7 @@ Operations
 }
 .operations-container {
   width: 90%;
-  height: 350px;
+  height: 400px;
   max-width: 1000px;
   background: white;
   margin: 0 auto 10rem auto;
@@ -486,6 +486,9 @@ Operations
   .operations-container-header {
     align-self: center;
     font-size: 1.5rem;
+  }
+  .operations-container {
+    height: 300px;
   }
 }
 .loan-container {
