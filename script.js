@@ -21,6 +21,8 @@ const modal = document.querySelector(".modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 // overlay
 const overlay = document.querySelector(".overlay");
+// msg
+const msgBtn = document.querySelector(".msg-btn");
 /*
 //////////////////////////
 EVENT LISTENERS
@@ -65,4 +67,9 @@ closeBtn.addEventListener("click", function () {
   loanBtn.style.alignSelf = "center";
   closeBtn.style.alignSelf = "flex-start";
   closeContainer.style.display = "inline-block";
+});
+// msg
+msgBtn.addEventListener("click", function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 });

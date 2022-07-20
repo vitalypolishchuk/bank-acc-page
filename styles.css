@@ -655,7 +655,7 @@ Open Account Message
   padding: 5rem 6rem;
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  transition: all 0.5s;
+  transition: all 0.5s linear;
   max-width: 600px;
 }
 
@@ -668,7 +668,7 @@ Open Account Message
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   z-index: 999;
-  transition: all 0.5s;
+  transition: all 0.5s linear;
 }
 
 .modal__header {
@@ -700,11 +700,14 @@ Open Account Message
 }
 
 .modal__form button {
-  grid-column: 1 / span 2;
-  justify-self: center;
-  margin-top: 1rem;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  display: inline-block;
+  grid-column: 2/3;
 }
-
 .btn--close-modal {
   font-family: inherit;
   color: inherit;
@@ -716,7 +719,6 @@ Open Account Message
   border: none;
   background: none;
 }
-
 .hidden {
   display: none;
 }
