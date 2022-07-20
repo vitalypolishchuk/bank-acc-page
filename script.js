@@ -4,6 +4,7 @@ DOC VARIABLES
 //////////////////////////
 */
 /// navigation ///
+const navBar = document.querySelector(".navBar");
 const navBtn = document.getElementById("navBtn");
 const navLinks = document.getElementById("nav-links");
 const openAccBtn = document.querySelector(".open-acc");
@@ -62,11 +63,14 @@ navLinkTestimonials.addEventListener("click", function (e) {
   e.preventDefault();
   testimonialsSection.scrollIntoView({ behavior: "smooth" });
 });
+let lastScrollY = window.scrollY;
+const featuresCords = featuresSection.getBoundingClientRect();
+window.addEventListener("scroll", function () {
+  navBar.style.position = lastScrollY > featuresCords.top ? "sticky" : "absolute";
+  lastScrollY = window.scrollY;
+});
 /// Header ///
 headerBtn.addEventListener("click", function (e) {
-  const featuresCords = featuresSection.getBoundingClientRect();
-  console.log(featuresCords);
-
   // Scrolling
   // OLD WAY
   // window.scrollTo({

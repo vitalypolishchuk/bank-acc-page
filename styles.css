@@ -145,13 +145,14 @@ Navigation
 =========================================
 */
 .navbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   background: white;
-  box-shadow: var(--dark-shadow);
+  /* box-shadow: var(--dark-shadow); */
   z-index: 999;
+  background: var(--color-background);
 }
 .nav-center {
   width: 100%;
@@ -181,6 +182,7 @@ Navigation
 .nav-links {
   height: 0;
   overflow: hidden;
+  transition: var(--transition);
 }
 .nav-links--visible {
   height: 200px;
