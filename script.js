@@ -6,6 +6,7 @@ DOC VARIABLES
 /// navigation ///
 const navBtn = document.getElementById("navBtn");
 const navLinks = document.getElementById("nav-links");
+const openAccBtn = document.querySelector(".open-acc");
 /// operations ///
 const operationsBtnContainer = document.querySelector(".operations-btns-container");
 const transferBtn = document.querySelector(".transfer");
@@ -15,6 +16,11 @@ const operationsInsideContainer = document.querySelectorAll(".operations-inside-
 const transferMoneyContainer = document.querySelector(".transfer-money-container");
 const loanContainer = document.querySelector(".loan-container");
 const closeContainer = document.querySelector(".close-container");
+// modal
+const modal = document.querySelector(".modal");
+const btnCloseModal = document.querySelector(".btn--close-modal");
+// overlay
+const overlay = document.querySelector(".overlay");
 /*
 //////////////////////////
 EVENT LISTENERS
@@ -23,6 +29,14 @@ EVENT LISTENERS
 /// navigation ///
 navBtn.addEventListener("click", function () {
   navLinks.classList.toggle("nav-links--visible");
+});
+openAccBtn.addEventListener("click", function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+});
+btnCloseModal.addEventListener("click", function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
 });
 /// operations ///
 transferBtn.addEventListener("click", function () {
