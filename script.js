@@ -3,6 +3,8 @@
 DOC VARIABLES
 //////////////////////////
 */
+/// variables///
+const root = document.querySelector(":root");
 /// navigation ///
 const navBar = document.querySelector(".navBar");
 const navBtn = document.getElementById("navBtn");
@@ -66,7 +68,14 @@ navLinkTestimonials.addEventListener("click", function (e) {
 let lastScrollY = window.scrollY;
 const featuresCords = featuresSection.getBoundingClientRect();
 window.addEventListener("scroll", function () {
-  navBar.style.position = lastScrollY > featuresCords.top ? "sticky" : "absolute";
+  // navBar.style.position = lastScrollY > featuresCords.top ? "sticky" : "absolute";
+  if (lastScrollY > featuresCords.top) {
+    navBar.style.position = "sticky";
+    navBar.style.background = "rgba(255,255,255,0.7)";
+  } else {
+    navBar.style.background = getComputedStyle(root).getPropertyValue("--color-background");
+    navBar.style.position = "absolute";
+  }
   lastScrollY = window.scrollY;
 });
 /// Header ///
