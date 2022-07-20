@@ -707,6 +707,7 @@ Open Account Message
   font-size: 1.1rem;
   display: inline-block;
   grid-column: 2/3;
+  cursor: pointer;
 }
 .btn--close-modal {
   font-family: inherit;
@@ -720,7 +721,8 @@ Open Account Message
   background: none;
 }
 .hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 @media screen and (min-width: 768px) {
   .modal__form input {
