@@ -181,7 +181,6 @@ Navigation
 .nav-links {
   height: 0;
   overflow: hidden;
-  transition: var(--transition);
 }
 .nav-links--visible {
   height: 200px;

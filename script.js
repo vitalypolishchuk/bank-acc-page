@@ -7,7 +7,15 @@ DOC VARIABLES
 const navBtn = document.getElementById("navBtn");
 const navLinks = document.getElementById("nav-links");
 const openAccBtn = document.querySelector(".open-acc");
+const navLinkFeatures = document.querySelector(".nav-link-features");
+const navLinkOperations = document.querySelector(".nav-link-operations");
+const navLinkTestimonials = document.querySelector(".nav-link-testimonials");
+/// header ///
+const headerBtn = document.querySelector(".header-button");
+/// features ///
+const featuresSection = document.getElementById("features");
 /// operations ///
+const operationsSection = document.getElementById("operations");
 const operationsBtnContainer = document.querySelector(".operations-btns-container");
 const transferBtn = document.querySelector(".transfer");
 const loanBtn = document.querySelector(".loan");
@@ -16,6 +24,8 @@ const operationsInsideContainer = document.querySelectorAll(".operations-inside-
 const transferMoneyContainer = document.querySelector(".transfer-money-container");
 const loanContainer = document.querySelector(".loan-container");
 const closeContainer = document.querySelector(".close-container");
+// testimonials
+const testimonialsSection = document.getElementById("testimonials");
 // modal
 const modal = document.querySelector(".modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
@@ -39,6 +49,33 @@ openAccBtn.addEventListener("click", function () {
 btnCloseModal.addEventListener("click", function () {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
+});
+navLinkFeatures.addEventListener("click", function (e) {
+  e.preventDefault();
+  featuresSection.scrollIntoView({ behavior: "smooth" });
+});
+navLinkOperations.addEventListener("click", function (e) {
+  e.preventDefault();
+  operationsSection.scrollIntoView({ behavior: "smooth" });
+});
+navLinkTestimonials.addEventListener("click", function (e) {
+  e.preventDefault();
+  testimonialsSection.scrollIntoView({ behavior: "smooth" });
+});
+/// Header ///
+headerBtn.addEventListener("click", function (e) {
+  const featuresCords = featuresSection.getBoundingClientRect();
+  console.log(featuresCords);
+
+  // Scrolling
+  // OLD WAY
+  // window.scrollTo({
+  //   left: featuresCords.left + window.pageXOffset,
+  //   top: featuresCords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  featuresSection.scrollIntoView({ behavior: "smooth" });
 });
 /// operations ///
 transferBtn.addEventListener("click", function () {
