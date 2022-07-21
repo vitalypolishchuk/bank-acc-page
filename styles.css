@@ -464,8 +464,6 @@ Operations
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  visibility: 0;
-  opacity: 0;
   transition: var(--transition);
 }
 .transfer-money-container {

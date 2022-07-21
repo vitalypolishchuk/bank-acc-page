@@ -94,16 +94,14 @@ headerBtn.addEventListener("click", function (e) {
 operationsBtnContainer.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("operation-btn")) {
-    const indexOfTarget = [...operationsBtnContainer.children].indexOf(e.target);
+    const dataTab = +e.target.getAttribute("data-tab");
     [...this.children].forEach((child, i) => {
-      if (indexOfTarget === i) {
+      if (dataTab === i) {
         child.style.marginBottom = "1rem";
-        operationsInsideContainer[indexOfTarget].style.opacity = 0.7;
-        operationsInsideContainer[indexOfTarget].style.visibility = 1;
+        operationsInsideContainer[dataTab].classList.remove("hidden");
       } else {
         child.style.marginBottom = "0rem";
-        operationsInsideContainer[i].style.opacity = 0;
-        operationsInsideContainer[i].style.visibility = 0;
+        operationsInsideContainer[i].classList.add("hidden");
       }
     });
   }
@@ -113,14 +111,3 @@ msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
-
-// // going downwards: child
-// console.log(headerTitle.querySelectorAll(".word-background"));
-// console.log(headerTitle.childNodes);
-// console.log((headerTitle.firstElementChild.style.color = "white"));
-// console.log(headerTitle.parentElement);
-// // headerTitle.closest(".header").style.background = "white"; // to get closest certain parent
-
-// // siblings
-// console.log(headerTitle.previousElementSibling);
-// console.log(headerTitle.nextSibling);
