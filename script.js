@@ -42,6 +42,15 @@ EVENT LISTENERS
 //////////////////////////
 */
 /// navigation ///
+function removeNavPanel(section) {
+  if (navLinks.classList.contains("nav-links--visible")) {
+    navLinks.classList.remove("nav-links--visible");
+    setTimeout(() => section.scrollIntoView({ behavior: "smooth" }), 500);
+  } else {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
 navBtn.addEventListener("click", function () {
   navLinks.classList.toggle("nav-links--visible");
 });
@@ -55,20 +64,19 @@ btnCloseModal.addEventListener("click", function () {
 });
 navLinkFeatures.addEventListener("click", function (e) {
   e.preventDefault();
-  featuresSection.scrollIntoView({ behavior: "smooth" });
+  removeNavPanel(featuresSection);
 });
 navLinkOperations.addEventListener("click", function (e) {
   e.preventDefault();
-  operationsSection.scrollIntoView({ behavior: "smooth" });
+  removeNavPanel(operationsSection);
 });
 navLinkTestimonials.addEventListener("click", function (e) {
   e.preventDefault();
-  testimonialsSection.scrollIntoView({ behavior: "smooth" });
+  removeNavPanel(testimonialsSection);
 });
 let lastScrollY = window.scrollY;
 const featuresCords = featuresSection.getBoundingClientRect();
 window.addEventListener("scroll", function () {
-  // navBar.style.position = lastScrollY > featuresCords.top ? "sticky" : "absolute";
   if (lastScrollY > featuresCords.top) {
     navBar.style.position = "sticky";
     navBar.style.background = "rgba(255,255,255,0.7)";
@@ -80,15 +88,7 @@ window.addEventListener("scroll", function () {
 });
 /// Header ///
 headerBtn.addEventListener("click", function (e) {
-  // Scrolling
-  // OLD WAY
-  // window.scrollTo({
-  //   left: featuresCords.left + window.pageXOffset,
-  //   top: featuresCords.top + window.pageYOffset,
-  //   behavior: "smooth",
-  // });
-
-  featuresSection.scrollIntoView({ behavior: "smooth" });
+  removeNavPanel(featuresSection);
 });
 /// operations ///
 transferBtn.addEventListener("click", function () {
