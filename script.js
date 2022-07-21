@@ -72,6 +72,21 @@ navLinks.addEventListener("click", function (e) {
   const id = e.target.getAttribute("href");
   if (e.target.classList.contains("nav-link") && id !== "#") scrollIntoSection(id);
 });
+function handleHover(e, opacity) {
+  if (e.target.classList.contains("nav-link")) {
+    const link = e.target;
+    const siblings = navLinkEach;
+    siblings.forEach((el) => {
+      if (el !== link) el.style.opacity = opacity;
+    });
+  }
+}
+navLinks.addEventListener("mouseover", function (e) {
+  handleHover(e, 0.5);
+});
+navLinks.addEventListener("mouseout", function (e) {
+  handleHover(e, 1);
+});
 let lastScrollY = window.scrollY;
 const featuresCords = featuresSection.getBoundingClientRect();
 window.addEventListener("scroll", function () {
