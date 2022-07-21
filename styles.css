@@ -437,7 +437,7 @@ Operations
 }
 .transfer {
   background: var(--color-secondary);
-  align-self: flex-start;
+  margin-bottom: 1rem;
 }
 .transfer:hover {
   background: var(--color-secondary-darker);
@@ -464,10 +464,13 @@ Operations
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none;
+  visibility: 0;
+  opacity: 0;
+  transition: var(--transition);
 }
 .transfer-money-container {
-  display: inline-block;
+  visibility: 1;
+  opacity: 0.7;
 }
 .operations-icon {
   font-size: 1.5rem;

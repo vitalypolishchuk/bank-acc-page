@@ -17,6 +17,7 @@ const navLinkFeatures = document.querySelector(".nav-link-features");
 const navLinkOperations = document.querySelector(".nav-link-operations");
 const navLinkTestimonials = document.querySelector(".nav-link-testimonials");
 /// header ///
+const headerTitle = document.querySelector(".header-title");
 const headerBtn = document.querySelector(".header-button");
 /// features ///
 const featuresSection = document.getElementById("features");
@@ -47,7 +48,6 @@ EVENT LISTENERS
 /// navigation ///
 function scrollIntoSection(section) {
   const docSection = document.querySelector(section);
-  console.log(docSection);
   if (navLinks.classList.contains("nav-links--visible")) {
     navLinks.classList.remove("nav-links--visible");
     setTimeout(() => docSection.scrollIntoView({ behavior: "smooth" }), 400);
@@ -91,35 +91,36 @@ headerBtn.addEventListener("click", function (e) {
   scrollIntoSection(id);
 });
 /// operations ///
-transferBtn.addEventListener("click", function () {
-  operationsInsideContainer.forEach((selector) => {
-    selector.style.display = "none";
-  });
-  transferBtn.style.alignSelf = "flex-start";
-  loanBtn.style.alignSelf = "center";
-  closeBtn.style.alignSelf = "center";
-  transferMoneyContainer.style.display = "inline-block";
-});
-loanBtn.addEventListener("click", function () {
-  operationsInsideContainer.forEach((selector) => {
-    selector.style.display = "none";
-  });
-  transferBtn.style.alignSelf = "center";
-  loanBtn.style.alignSelf = "flex-start";
-  closeBtn.style.alignSelf = "center";
-  loanContainer.style.display = "inline-block";
-});
-closeBtn.addEventListener("click", function () {
-  operationsInsideContainer.forEach((selector) => {
-    selector.style.display = "none";
-  });
-  transferBtn.style.alignSelf = "center";
-  loanBtn.style.alignSelf = "center";
-  closeBtn.style.alignSelf = "flex-start";
-  closeContainer.style.display = "inline-block";
+operationsBtnContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("operation-btn")) {
+    const indexOfTarget = [...operationsBtnContainer.children].indexOf(e.target);
+    [...this.children].forEach((child, i) => {
+      if (indexOfTarget === i) {
+        child.style.marginBottom = "1rem";
+        operationsInsideContainer[indexOfTarget].style.opacity = 0.7;
+        operationsInsideContainer[indexOfTarget].style.visibility = 1;
+      } else {
+        child.style.marginBottom = "0rem";
+        operationsInsideContainer[i].style.opacity = 0;
+        operationsInsideContainer[i].style.visibility = 0;
+      }
+    });
+  }
 });
 /// msg ///
 msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
+
+// // going downwards: child
+// console.log(headerTitle.querySelectorAll(".word-background"));
+// console.log(headerTitle.childNodes);
+// console.log((headerTitle.firstElementChild.style.color = "white"));
+// console.log(headerTitle.parentElement);
+// // headerTitle.closest(".header").style.background = "white"; // to get closest certain parent
+
+// // siblings
+// console.log(headerTitle.previousElementSibling);
+// console.log(headerTitle.nextSibling);
