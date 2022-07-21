@@ -274,9 +274,12 @@ Header
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
-  color: var(--color-primary);
   border-bottom: 2px solid var(--color-primary);
   padding-bottom: 0.2rem;
+}
+.header-button:link,
+.header-button:visited {
+  color: var(--color-primary);
 }
 @media screen and (min-width: 768px) {
   .header-center {

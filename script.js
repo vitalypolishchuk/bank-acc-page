@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 //////////////////////////
 DOC VARIABLES
@@ -8,6 +10,7 @@ const root = document.querySelector(":root");
 /// navigation ///
 const navBar = document.querySelector(".navBar");
 const navBtn = document.getElementById("navBtn");
+const navLinkEach = document.querySelectorAll(".nav-link");
 const navLinks = document.getElementById("nav-links");
 const openAccBtn = document.querySelector(".open-acc");
 const navLinkFeatures = document.querySelector(".nav-link-features");
@@ -42,15 +45,16 @@ EVENT LISTENERS
 //////////////////////////
 */
 /// navigation ///
-function removeNavPanel(section) {
+function scrollIntoSection(section) {
+  const docSection = document.querySelector(section);
+  console.log(docSection);
   if (navLinks.classList.contains("nav-links--visible")) {
     navLinks.classList.remove("nav-links--visible");
-    setTimeout(() => section.scrollIntoView({ behavior: "smooth" }), 500);
+    setTimeout(() => docSection.scrollIntoView({ behavior: "smooth" }), 400);
   } else {
-    section.scrollIntoView({ behavior: "smooth" });
+    docSection.scrollIntoView({ behavior: "smooth" });
   }
 }
-
 navBtn.addEventListener("click", function () {
   navLinks.classList.toggle("nav-links--visible");
 });
@@ -62,17 +66,11 @@ btnCloseModal.addEventListener("click", function () {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
 });
-navLinkFeatures.addEventListener("click", function (e) {
+// EVENT DELEGATION
+navLinks.addEventListener("click", function (e) {
   e.preventDefault();
-  removeNavPanel(featuresSection);
-});
-navLinkOperations.addEventListener("click", function (e) {
-  e.preventDefault();
-  removeNavPanel(operationsSection);
-});
-navLinkTestimonials.addEventListener("click", function (e) {
-  e.preventDefault();
-  removeNavPanel(testimonialsSection);
+  const id = e.target.getAttribute("href");
+  if (e.target.classList.contains("nav-link") && id !== "#") scrollIntoSection(id);
 });
 let lastScrollY = window.scrollY;
 const featuresCords = featuresSection.getBoundingClientRect();
@@ -88,7 +86,9 @@ window.addEventListener("scroll", function () {
 });
 /// Header ///
 headerBtn.addEventListener("click", function (e) {
-  removeNavPanel(featuresSection);
+  e.preventDefault();
+  const id = this.getAttribute("href");
+  scrollIntoSection(id);
 });
 /// operations ///
 transferBtn.addEventListener("click", function () {
@@ -118,7 +118,7 @@ closeBtn.addEventListener("click", function () {
   closeBtn.style.alignSelf = "flex-start";
   closeContainer.style.display = "inline-block";
 });
-// msg
+/// msg ///
 msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
