@@ -17,6 +17,7 @@ const navLinkFeatures = document.querySelector(".nav-link-features");
 const navLinkOperations = document.querySelector(".nav-link-operations");
 const navLinkTestimonials = document.querySelector(".nav-link-testimonials");
 /// header ///
+const headerSection = document.querySelector(".header");
 const headerTitle = document.querySelector(".header-title");
 const headerBtn = document.querySelector(".header-button");
 /// features ///
@@ -72,33 +73,40 @@ navLinks.addEventListener("click", function (e) {
   const id = e.target.getAttribute("href");
   if (e.target.classList.contains("nav-link") && id !== "#") scrollIntoSection(id);
 });
-function handleHover(e, opacity) {
+function handleHover(e) {
+  console.log(this);
   if (e.target.classList.contains("nav-link")) {
     const link = e.target;
     const siblings = navLinkEach;
     siblings.forEach((el) => {
-      if (el !== link) el.style.opacity = opacity;
+      if (el !== link) el.style.opacity = this;
     });
   }
 }
-navLinks.addEventListener("mouseover", function (e) {
-  handleHover(e, 0.5);
-});
-navLinks.addEventListener("mouseout", function (e) {
-  handleHover(e, 1);
-});
-let lastScrollY = window.scrollY;
-const featuresCords = featuresSection.getBoundingClientRect();
-window.addEventListener("scroll", function () {
-  if (lastScrollY > featuresCords.top) {
-    navBar.style.position = "sticky";
-    navBar.style.background = "rgba(255,255,255,0.7)";
+navLinks.addEventListener("mouseover", handleHover.bind(0.5));
+navLinks.addEventListener("mouseout", handleHover.bind(1));
+// sticky nav using Intersection Observer API
+// const featuresCords = featuresSection.getBoundingClientRect();
+// window.addEventListener("scroll", function (e) {
+//   if (window.scrollY > featuresCords.top) {
+//     navBar.style.position = "sticky";
+//     navBar.style.background = "rgba(255,255,255,0.7)";
+//   } else {
+//     navBar.style.background = getComputedStyle(root).getPropertyValue("--color-background");
+//     navBar.style.position = "absolute";
+//   }
+// });
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    console.log("here");
+    navBar.classList.add("sticky");
   } else {
-    navBar.style.background = getComputedStyle(root).getPropertyValue("--color-background");
-    navBar.style.position = "absolute";
+    navBar.classList.remove("sticky");
   }
-  lastScrollY = window.scrollY;
-});
+};
+const headerObserver = new IntersectionObserver(stickyNav, { root: null, threshold: -0 });
+headerObserver.observe(headerSection);
 /// Header ///
 headerBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -126,3 +134,15 @@ msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
+
+// // practice
+// const obsCallBack = function (entries, observer) {
+//   entries.forEach((entry) => console.log(entry));
+// }; // will get called each time when observed element intersects the root element at the threshold
+
+// const obsOptions = {
+//   root: null, // element that the target is intesecting
+//   threshold: 0.1,
+// };
+// const observer = new IntersectionObserver(obsCallBack, obsOptions);
+// observer.observe(featuresSection);
