@@ -115,6 +115,9 @@ p {
     font-size: 1.15rem;
   }
 }
+section {
+  transition: all 0.5s linear;
+}
 .word-background {
   background: var(--gradient-primary);
   clip-path: polygon(11% 0, 100% 0%, 91% 100%, 0% 100%);
@@ -138,6 +141,10 @@ p {
 }
 .text-bold {
   font-weight: bold;
+}
+.section--hidden {
+  opacity: 0;
+  transform: translateY(8rem);
 }
 /*
 =========================================
@@ -382,6 +389,9 @@ Features
 }
 .feature {
   margin-bottom: 5rem;
+}
+.lazy-img {
+  filter: blur(20px);
 }
 @media screen and (min-width: 1000px) {
   .feature {

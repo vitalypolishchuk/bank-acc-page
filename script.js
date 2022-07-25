@@ -7,6 +7,8 @@ DOC VARIABLES
 */
 /// variables///
 const root = document.querySelector(":root");
+/// body ///
+const body = document.querySelector("body");
 /// navigation ///
 const navBar = document.querySelector(".navBar");
 const navBtn = document.getElementById("navBtn");
@@ -22,6 +24,7 @@ const headerTitle = document.querySelector(".header-title");
 const headerBtn = document.querySelector(".header-button");
 /// features ///
 const featuresSection = document.getElementById("features");
+const lazyImages = document.querySelectorAll(".lazy-img");
 /// operations ///
 const operationsSection = document.getElementById("operations");
 const operationsBtnContainer = document.querySelector(".operations-btns-container");
@@ -32,14 +35,14 @@ const operationsInsideContainer = document.querySelectorAll(".operations-inside-
 const transferMoneyContainer = document.querySelector(".transfer-money-container");
 const loanContainer = document.querySelector(".loan-container");
 const closeContainer = document.querySelector(".close-container");
-// testimonials
+/// testimonials  ///
 const testimonialsSection = document.getElementById("testimonials");
-// modal
+/// modal  ///
 const modal = document.querySelector(".modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
-// overlay
+/// overlay  ///
 const overlay = document.querySelector(".overlay");
-// msg
+/// msg  ///
 const msgBtn = document.querySelector(".msg-btn");
 /*
 //////////////////////////
@@ -108,6 +111,32 @@ operationsBtnContainer.addEventListener("click", function (e) {
       }
     });
   }
+});
+/// section slide effect ///
+const allSections = document.querySelectorAll("section");
+const sectionObsFunc = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("section--hidden");
+  sectionObserver.unobserve(entry.target);
+};
+const sectionObserver = new IntersectionObserver(sectionObsFunc, { root: null, threshold: 0.15 });
+allSections.forEach(function (section, i) {
+  if (i === 0) return;
+  section.classList.add("section--hidden");
+  sectionObserver.observe(section);
+});
+/// lazy images ///
+const obsImgFunc = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("lazy-img");
+  entry.target.setAttribute("src", entry.target.getAttribute("data-src"));
+  imgObserver.unobserve(entry.target);
+};
+const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold: 1 });
+[...lazyImages].forEach(function (img) {
+  imgObserver.observe(img);
 });
 /// msg ///
 msgBtn.addEventListener("click", function () {
