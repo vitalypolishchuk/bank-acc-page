@@ -86,33 +86,13 @@ function handleHover(e) {
 navLinks.addEventListener("mouseover", handleHover.bind(0.5));
 navLinks.addEventListener("mouseout", handleHover.bind(1));
 // sticky nav using Intersection Observer API
-// const featuresCords = featuresSection.getBoundingClientRect();
-// window.addEventListener("scroll", function (e) {
-//   if (window.scrollY > featuresCords.top) {
-//     navBar.style.position = "sticky";
-//     navBar.style.background = "rgba(255,255,255,0.7)";
-//   } else {
-//     navBar.style.background = getComputedStyle(root).getPropertyValue("--color-background");
-//     navBar.style.position = "absolute";
-//   }
-// });
-const stickyNav = function (entries) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) {
-    console.log("here");
-    navBar.classList.add("sticky");
-  } else {
-    navBar.classList.remove("sticky");
-  }
-};
-const headerObserver = new IntersectionObserver(stickyNav, { root: null, threshold: -0 });
+function stickyNav(entries) {
+  if (!entries[0].isIntersecting) navBar.classList.add("sticky");
+  else navBar.classList.remove("sticky");
+}
+const navHeight = navBar.getBoundingClientRect().height;
+const headerObserver = new IntersectionObserver(stickyNav, { root: null, threshold: 0, rootMargin: `-${navHeight}px` });
 headerObserver.observe(headerSection);
-/// Header ///
-headerBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  const id = this.getAttribute("href");
-  scrollIntoSection(id);
-});
 /// operations ///
 operationsBtnContainer.addEventListener("click", function (e) {
   e.preventDefault();
@@ -134,15 +114,3 @@ msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
 });
-
-// // practice
-// const obsCallBack = function (entries, observer) {
-//   entries.forEach((entry) => console.log(entry));
-// }; // will get called each time when observed element intersects the root element at the threshold
-
-// const obsOptions = {
-//   root: null, // element that the target is intesecting
-//   threshold: 0.1,
-// };
-// const observer = new IntersectionObserver(obsCallBack, obsOptions);
-// observer.observe(featuresSection);

@@ -145,7 +145,6 @@ Navigation
 =========================================
 */
 .navbar {
-  outline: 2px solid red;
   background: white;
   /* box-shadow: var(--dark-shadow); */
   z-index: 999;
