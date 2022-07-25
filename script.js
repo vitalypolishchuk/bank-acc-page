@@ -24,7 +24,7 @@ const headerTitle = document.querySelector(".header-title");
 const headerBtn = document.querySelector(".header-button");
 /// features ///
 const featuresSection = document.getElementById("features");
-const lazyImages = document.querySelectorAll(".lazy-img");
+const lazyImages = document.querySelectorAll("img[data-src]");
 /// operations ///
 const operationsSection = document.getElementById("operations");
 const operationsBtnContainer = document.querySelector(".operations-btns-container");
@@ -128,16 +128,19 @@ allSections.forEach(function (section, i) {
 });
 /// lazy images ///
 const obsImgFunc = function (entries) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-  entry.target.classList.remove("lazy-img");
-  entry.target.setAttribute("src", entry.target.getAttribute("data-src"));
-  imgObserver.unobserve(entry.target);
+  entries.forEach(function (entry) {
+    console.log(entry.target.hasAttribute("data-src"));
+    if (!entry.isIntersecting || !entry.target.hasAttribute("data-src")) return;
+    entry.target.setAttribute("src", entry.target.getAttribute("data-src"));
+    entry.target.removeAttribute("data-src");
+    entry.target.addEventListener("load", function () {
+      entry.target.classList.remove("lazy-img");
+      imgObserver.unobserve(entry.target);
+    });
+  });
 };
-const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold: 1 });
-[...lazyImages].forEach(function (img) {
-  imgObserver.observe(img);
-});
+const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold: [0, 1], rootMargin: "200px" });
+[...lazyImages].forEach((img) => imgObserver.observe(img));
 /// msg ///
 msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
