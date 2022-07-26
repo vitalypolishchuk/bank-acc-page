@@ -39,6 +39,8 @@ const closeContainer = document.querySelector(".close-container");
 const testimonialsSection = document.getElementById("testimonials");
 const arrowRight = document.querySelector(".arrow-right");
 const arrowLeft = document.querySelector(".arrow-left");
+const commentsOutsContainer = document.querySelector(".outside-comments-container");
+const dotContainer = document.querySelector(".dots");
 const comments = document.querySelectorAll(".comment");
 /// modal  ///
 const modal = document.querySelector(".modal");
@@ -143,18 +145,54 @@ const obsImgFunc = function (entries) {
 const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold: [0, 1], rootMargin: "200px" });
 [...lazyImages].forEach((img) => imgObserver.observe(img));
 /// comments slider ///
+let maxSlide = comments.length - 1;
 let currSlide = 0;
-const maxSlide = comments.length - 1;
 
-comments.forEach((comment, i) => (comment.style.left = i * 200 + "%"));
+function nextSlide(right, left) {
+  if (right) {
+    currSlide = currSlide === maxSlide ? 0 : currSlide + 1;
+    comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+  } else {
+    currSlide = currSlide === 0 ? maxSlide : currSlide - 1;
+    comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+  }
+}
+const slideInterval = setInterval(nextSlide, 10000, true, "");
 
+function goToSlide(slide) {
+  comments.forEach((comment, i) => {
+    comment.style.left = 200 * (i - slide) + "%";
+  });
+}
+goToSlide(0);
+const createDots = function () {
+  comments.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML("beforeend", `<button class="dots_dot" data-comment="${i}"></button>`);
+  });
+};
+createDots();
+dotContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (!e.target.classList.contains("dots_dot")) return;
+  goToSlide(e.target.getAttribute("data-comment"));
+});
 arrowRight.addEventListener("click", function () {
-  currSlide = currSlide === maxSlide ? 0 : currSlide + 1;
-  comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+  clearInterval(slideInterval);
+  nextSlide(true, "");
 });
 arrowLeft.addEventListener("click", function () {
-  currSlide = currSlide === 0 ? maxSlide : currSlide - 1;
-  comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+  clearInterval(slideInterval);
+  nextSlide("", true);
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight") {
+    clearInterval(slideInterval);
+    nextSlide(true, "");
+  }
+  if (e.key === "ArrowLeft") {
+    clearInterval(slideInterval);
+    nextSlide("", true);
+  }
 });
 /// msg ///
 msgBtn.addEventListener("click", function () {
