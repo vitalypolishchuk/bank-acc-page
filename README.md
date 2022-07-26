@@ -12,4 +12,4 @@ Banking page using Vanilla JS
 
 ## Link to the website
 
-https://bank-account-advanced.netlify.app/
+https://bankist-vanilla-js.netlify.app/
