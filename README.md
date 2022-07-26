@@ -1,6 +1,6 @@
 # Bankist
 
-A brief description of what this project does and who it's for
+Banking page using Vanilla JS
 
 ## Acknowledgements
 
