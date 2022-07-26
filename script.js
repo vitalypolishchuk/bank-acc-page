@@ -37,6 +37,9 @@ const loanContainer = document.querySelector(".loan-container");
 const closeContainer = document.querySelector(".close-container");
 /// testimonials  ///
 const testimonialsSection = document.getElementById("testimonials");
+const arrowRight = document.querySelector(".arrow-right");
+const arrowLeft = document.querySelector(".arrow-left");
+const comments = document.querySelectorAll(".comment");
 /// modal  ///
 const modal = document.querySelector(".modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
@@ -77,7 +80,6 @@ navLinks.addEventListener("click", function (e) {
   if (e.target.classList.contains("nav-link") && id !== "#") scrollIntoSection(id);
 });
 function handleHover(e) {
-  console.log(this);
   if (e.target.classList.contains("nav-link")) {
     const link = e.target;
     const siblings = navLinkEach;
@@ -129,7 +131,6 @@ allSections.forEach(function (section, i) {
 /// lazy images ///
 const obsImgFunc = function (entries) {
   entries.forEach(function (entry) {
-    console.log(entry.target.hasAttribute("data-src"));
     if (!entry.isIntersecting || !entry.target.hasAttribute("data-src")) return;
     entry.target.setAttribute("src", entry.target.getAttribute("data-src"));
     entry.target.removeAttribute("data-src");
@@ -141,6 +142,20 @@ const obsImgFunc = function (entries) {
 };
 const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold: [0, 1], rootMargin: "200px" });
 [...lazyImages].forEach((img) => imgObserver.observe(img));
+/// comments slider ///
+let currSlide = 0;
+const maxSlide = comments.length - 1;
+
+comments.forEach((comment, i) => (comment.style.left = i * 200 + "%"));
+
+arrowRight.addEventListener("click", function () {
+  currSlide = currSlide === maxSlide ? 0 : currSlide + 1;
+  comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+});
+arrowLeft.addEventListener("click", function () {
+  currSlide = currSlide === 0 ? maxSlide : currSlide - 1;
+  comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
+});
 /// msg ///
 msgBtn.addEventListener("click", function () {
   modal.classList.remove("hidden");
