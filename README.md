@@ -8,4 +8,4 @@ A brief description of what this project does and who it's for
 
 ## Demo
 
-![](https://github.com/vitalypolishchuk/bankist-page/other/demo.gif)
+![](https://github.com/vitalypolishchuk/bankist-page/blob/master/other/demo.gif)
