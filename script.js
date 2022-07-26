@@ -100,6 +100,11 @@ function stickyNav(entries) {
 const navHeight = navBar.getBoundingClientRect().height;
 const headerObserver = new IntersectionObserver(stickyNav, { root: null, threshold: 0, rootMargin: `-${navHeight}px` });
 headerObserver.observe(headerSection);
+/// header ///
+headerBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  scrollIntoSection(e.target.getAttribute("href"));
+});
 /// operations ///
 operationsBtnContainer.addEventListener("click", function (e) {
   e.preventDefault();
@@ -148,6 +153,22 @@ const imgObserver = new IntersectionObserver(obsImgFunc, { root: null, threshold
 let maxSlide = comments.length - 1;
 let currSlide = 0;
 
+const createDots = function () {
+  comments.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML("beforeend", `<button class="dots_dot" data-comment="${i}"></button>`);
+  });
+};
+createDots();
+function dotsColor(dotNum) {
+  const allDots = document.querySelectorAll(".dots_dot");
+  allDots.forEach((dot, i) => {
+    if (i !== dotNum) {
+      dot.style.background = "#b9b9b9";
+    } else {
+      dot.style.background = "grey";
+    }
+  });
+}
 function nextSlide(right, left) {
   if (right) {
     currSlide = currSlide === maxSlide ? 0 : currSlide + 1;
@@ -156,41 +177,34 @@ function nextSlide(right, left) {
     currSlide = currSlide === 0 ? maxSlide : currSlide - 1;
     comments.forEach((comment, i) => (comment.style.left = 200 * (i - currSlide) + "%"));
   }
+  dotsColor(currSlide);
 }
-const slideInterval = setInterval(nextSlide, 10000, true, "");
-
 function goToSlide(slide) {
   comments.forEach((comment, i) => {
     comment.style.left = 200 * (i - slide) + "%";
   });
+  console.log(slide);
+  currSlide = slide;
+  dotsColor(currSlide);
 }
 goToSlide(0);
-const createDots = function () {
-  comments.forEach(function (_, i) {
-    dotContainer.insertAdjacentHTML("beforeend", `<button class="dots_dot" data-comment="${i}"></button>`);
-  });
-};
-createDots();
+const slideInterval = setInterval(nextSlide, 10000, true, "");
+
 dotContainer.addEventListener("click", function (e) {
   e.preventDefault();
-  if (!e.target.classList.contains("dots_dot")) return;
-  goToSlide(e.target.getAttribute("data-comment"));
+  goToSlide(Number(e.target.getAttribute("data-comment")));
 });
 arrowRight.addEventListener("click", function () {
-  clearInterval(slideInterval);
   nextSlide(true, "");
 });
 arrowLeft.addEventListener("click", function () {
-  clearInterval(slideInterval);
   nextSlide("", true);
 });
 document.addEventListener("keydown", function (e) {
   if (e.key === "ArrowRight") {
-    clearInterval(slideInterval);
     nextSlide(true, "");
   }
   if (e.key === "ArrowLeft") {
-    clearInterval(slideInterval);
     nextSlide("", true);
   }
 });
